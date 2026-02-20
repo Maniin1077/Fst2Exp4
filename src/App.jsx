@@ -12,7 +12,7 @@ export default function App() {
     <BrowserRouter>
       <Navbar />
 
-      <div className="container mt-3">
+      <div className="container-fluid px-4 mt-3">
         <ThemeToggle />
       </div>
 

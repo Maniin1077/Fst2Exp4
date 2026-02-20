@@ -5,7 +5,7 @@ export default function Cart() {
   const { state, dispatch } = useContext(AppContext);
 
   return (
-    <div className="container-fluid mt-4">
+    <div className="container-fluid px-5 mt-4">
       <h2>Cart Items</h2>
 
       {state.cart.length === 0 && <p>No items in cart.</p>}
