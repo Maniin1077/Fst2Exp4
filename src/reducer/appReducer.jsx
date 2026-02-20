@@ -1,11 +1,5 @@
 export const appReducer = (state, action) => {
   switch (action.type) {
-    case "TOGGLE_THEME":
-      return {
-        ...state,
-        theme: state.theme === "light" ? "dark" : "light",
-      };
-
     case "ADD_TO_CART":
       return {
         ...state,
@@ -15,7 +9,13 @@ export const appReducer = (state, action) => {
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart: state.cart.filter((_, i) => i !== action.payload),
+        cart: state.cart.filter((_, index) => index !== action.payload),
+      };
+
+    case "TOGGLE_THEME":
+      return {
+        ...state,
+        theme: state.theme === "light" ? "dark" : "light",
       };
 
     case "LOGIN":

@@ -18,7 +18,7 @@ export default function Home() {
   }, [filter]);
 
   return (
-    <div className="container mt-4">
+    <div className="container-fluid mt-4">
       <h2>Projects</h2>
       <FilterBar setFilter={setFilter} />
 
