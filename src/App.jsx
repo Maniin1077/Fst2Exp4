@@ -1,15 +1,25 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-
-function Home() {
-  return <h1 style={{ textAlign: "center" }}>EXP4 Working ✅</h1>
-}
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import ThemeToggle from "./components/ThemeToggle";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <Navbar />
+
+      <div className="container mt-3">
+        <ThemeToggle />
+      </div>
+
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
+
+      <Footer />
     </BrowserRouter>
-  )
+  );
 }

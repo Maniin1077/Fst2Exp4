@@ -1,24 +1,32 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Cart from "./pages/Cart";
-import ThemeToggle from "./components/ThemeToggle";
+import { useState } from "react";
+import CardComponent from "../components/CardComponent";
+import FilterBar from "../components/FilterBar";
 
-export default function App() {
+const data = [
+  { name: "React Project", category: "tech" },
+  { name: "UI Design", category: "design" },
+  { name: "Node API", category: "tech" },
+];
+
+export default function Home() {
+  const [filter, setFilter] = useState("all");
+
+  const filteredData =
+    filter === "all"
+      ? data
+      : data.filter((item) => item.category === filter);
+
   return (
-    <BrowserRouter>
-      <Navbar />
-      <div className="container mt-3">
-        <ThemeToggle />
+    <div className="container mt-4">
+      <h2>Projects</h2>
+
+      <FilterBar setFilter={setFilter} />
+
+      <div className="d-flex flex-wrap">
+        {filteredData.map((item, index) => (
+          <CardComponent key={index} item={item} />
+        ))}
       </div>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
-
-      <Footer />
-    </BrowserRouter>
+    </div>
   );
 }
