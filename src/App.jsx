@@ -1,25 +1,31 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useState } from "react";
+import CardComponent from "../components/CardComponent";
+import FilterBar from "../components/FilterBar";
 
-import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
-import Footer from './components/Footer'
+const data = [
+  { name: "React Project", category: "tech" },
+  { name: "UI Design", category: "design" },
+  { name: "Node API", category: "tech" },
+];
 
-function App() {
+export default function Home() {
+  const [filter, setFilter] = useState("all");
+
+  const filteredData =
+    filter === "all"
+      ? data
+      : data.filter((item) => item.category === filter);
+
   return (
-    <BrowserRouter>
-      <Navbar />
+    <div className="container mt-4">
+      <h2>Projects</h2>
+      <FilterBar setFilter={setFilter} />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-
-      <Footer />
-    </BrowserRouter>
-  )
+      <div className="d-flex flex-wrap">
+        {filteredData.map((item, index) => (
+          <CardComponent key={index} item={item} />
+        ))}
+      </div>
+    </div>
+  );
 }
-
-export default App

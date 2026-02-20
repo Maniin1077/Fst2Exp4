@@ -1,15 +1,24 @@
-import Hero from '../components/Hero'
-import Cards from '../components/Cards'
-import Features from '../components/Features'
-import Stats from '../components/Stats'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import ThemeToggle from "./components/ThemeToggle";
 
-export default function Home() {
+export default function App() {
   return (
-    <>
-      <Hero />
-      <Cards />
-      <Features />
-      <Stats />
-    </>
-  )
+    <BrowserRouter>
+      <Navbar />
+      <div className="container mt-3">
+        <ThemeToggle />
+      </div>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+
+      <Footer />
+    </BrowserRouter>
+  );
 }
