@@ -15,7 +15,19 @@ export const appReducer = (state, action) => {
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart: state.cart.filter((item, index) => index !== action.payload),
+        cart: state.cart.filter((_, i) => i !== action.payload),
+      };
+
+    case "LOGIN":
+      return {
+        ...state,
+        user: action.payload,
+      };
+
+    case "LOGOUT":
+      return {
+        ...state,
+        user: null,
       };
 
     default:

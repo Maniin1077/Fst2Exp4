@@ -6,6 +6,7 @@ export const AppContext = createContext();
 const initialState = {
   theme: "light",
   cart: [],
+  user: null,
 };
 
 export const AppProvider = ({ children }) => {

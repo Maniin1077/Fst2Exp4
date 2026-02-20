@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import CardComponent from "../components/CardComponent";
 import FilterBar from "../components/FilterBar";
 
@@ -11,15 +11,15 @@ const data = [
 export default function Home() {
   const [filter, setFilter] = useState("all");
 
-  const filteredData =
-    filter === "all"
+  const filteredData = useMemo(() => {
+    return filter === "all"
       ? data
       : data.filter((item) => item.category === filter);
+  }, [filter]);
 
   return (
     <div className="container mt-4">
       <h2>Projects</h2>
-
       <FilterBar setFilter={setFilter} />
 
       <div className="d-flex flex-wrap">

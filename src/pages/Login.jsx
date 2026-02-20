@@ -1,53 +1,31 @@
-import { Button, Paper, Typography, TextField } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useContext } from "react";
+import { AppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const navigate = useNavigate()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState("");
+  const { dispatch } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (email && password) {
-      navigate('/dashboard')
-    } else {
-      alert('Please enter email and password')
+    if (email) {
+      dispatch({ type: "LOGIN", payload: { email } });
+      navigate("/dashboard");
     }
-  }
+  };
 
   return (
-    <div className="container my-5 d-flex justify-content-center">
-      <Paper elevation={6} sx={{ padding: 4, width: 380 }}>
-        <Typography variant="h5" align="center" gutterBottom>
-          Login
-        </Typography>
-
-        <TextField
-          label="Email"
-          fullWidth
-          margin="normal"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <TextField
-          label="Password"
-          type="password"
-          fullWidth
-          margin="normal"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <Button
-          variant="contained"
-          fullWidth
-          sx={{ mt: 2 }}
-          onClick={handleLogin}
-        >
-          Login
-        </Button>
-      </Paper>
+    <div className="container mt-5">
+      <h2>Login</h2>
+      <input
+        className="form-control my-3"
+        placeholder="Enter Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <button className="btn btn-primary" onClick={handleLogin}>
+        Login
+      </button>
     </div>
-  )
+  );
 }

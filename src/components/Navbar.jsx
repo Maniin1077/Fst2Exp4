@@ -7,7 +7,8 @@ export default function Navbar() {
 
       <div>
         <Link className="text-light me-3" to="/">Home</Link>
-        <Link className="text-light" to="/cart">Cart</Link>
+        <Link className="text-light me-3" to="/cart">Cart</Link>
+        <Link className="text-light" to="/login">Login</Link>
       </div>
     </nav>
   );
